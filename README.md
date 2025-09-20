@@ -11,7 +11,7 @@ Una aplicación SaaS desarrollada en Laravel 12 siguiendo principios de Domain D
 - **Autorización**:  (Laravel Sanctum) Políticas de autorización basadas en roles 
 - **Validación de Negocio**: Límites de usuarios por solo un plan activo 
 - **Seeding**: Datos de ejemplo para desarrollo y testing
-- **Historial**: En la tabla subscript se guardar historial de los planes
+- **Historial**: En la tabla suscripciones se guardar historial de los planes
 
 ## 🏗️ Arquitectura
 
@@ -48,7 +48,7 @@ app/
 
 1. **Clonar el repositorio**
 ```bash
-git clone <repository-url>
+git clone https://github.com/lauraleon9/laravel-saas-ddd
 cd laravel-saas-ddd
 ```
 
@@ -75,7 +75,7 @@ docker compose exec app php artisan migrate --seed
 
 6. **Verificar la instalación**
 ```bash
-curl http://localhost:8086/api/v1/plans
+desde un navegador web: http://localhost:8086
 ```
 
 ## 🐳 Servicios Docker
@@ -136,9 +136,6 @@ Los seeders crean automáticamente:
 |--------|----------|-------------|
 | GET | `/tenants/{tenantId}/users` | Listar usuarios del tenant |
 | POST | `/tenants/{tenantId}/users` | Crear usuario (valida límites) |
-| GET | `/tenants/{tenantId}/users/{userId}` | Mostrar usuario específico |
-| PUT | `/tenants/{tenantId}/users/{userId}` | Actualizar usuario |
-| DELETE | `/tenants/{tenantId}/users/{userId}` | Desactivar usuario |
 
 ### Suscripciones (`/api/v1/tenants/{tenantId}/subscriptions`)
 
@@ -275,19 +272,9 @@ docker compose logs db
 
 
 
-## 🤝 Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
 
 ## 👨‍💻 Autor
 
 Laura Milena Leon Mendez
 
----
 
-🚀 **¿Listo para probar la API?** Inicia con `docker compose up -d` y explora los endpoints disponibles!
