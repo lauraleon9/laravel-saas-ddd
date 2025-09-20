@@ -1,0 +1,322 @@
+{
+  "info": {
+    "name": "Laravel SaaS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /api/v1/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@laravel-saas.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/login",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plans",
+      "item": [
+        {
+          "name": "GET /api/v1/plans (public)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/plans/{id} (public)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans/{{plan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans","{{plan_id}}"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/v1/plans (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Plan Premium desde Postman\",\n  \"monthly_price\": 199.99,\n  \"user_limit\": 50,\n  \"features\": [\n    \"Premium Feature 1\",\n    \"Premium Feature 2\",\n    \"Soporte 24/7\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/v1/plans/{id} (protected)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Plan Premium Actualizado\",\n  \"monthly_price\": 149.99,\n  \"user_limit\": 100,\n  \"features\": [\n    \"Feature A\",\n    \"Feature B\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans/{{plan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans","{{plan_id}}"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/v1/plans/{id} (protected)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_limit\": 75\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans/{{plan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans","{{plan_id}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/v1/plans/{id} (protected)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/plans/{{plan_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","plans","{{plan_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenants",
+      "item": [
+        {
+          "name": "GET /api/v1/tenants (protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/v1/tenants (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Inc POSTMAN\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants"]
+            }
+          }
+        },
+        {
+          "name": "GET /api/v1/tenants/{tenant} (protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/v1/tenants/{tenant} (protected)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Inc Actualizado\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/v1/tenants/{tenant} (protected)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Acme Inc (partial)\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/v1/tenants/{tenant} (protected)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant Users",
+      "item": [
+        {
+          "name": "GET /api/v1/tenants/{tenant}/users (protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users"]
+            }
+          }
+        },
+        {
+          "name": "POST /api/v1/tenants/{tenant}/users (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Usuario Tenant\",\n  \"email\": \"user@example.com\",\n  \"password\": \"password\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions",
+      "item": [
+        {
+          "name": "POST /api/v1/tenants/{tenantId}/subscriptions/change-plan (protected)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plan_id\": {{plan_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/subscriptions/change-plan",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","subscriptions","change-plan"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8086" },
+    { "key": "api_token", "value": "REEMPLAZA_AQUI_TU_TOKEN" },
+    { "key": "plan_id", "value": "1" },
+    { "key": "tenant_id", "value": "1" },
+    { "key": "user_id", "value": "1" }
+  ]
+}
