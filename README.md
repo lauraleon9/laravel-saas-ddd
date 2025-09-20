@@ -50,6 +50,7 @@ app/
 ```bash
 git clone https://github.com/lauraleon9/laravel-saas-ddd
 cd laravel-saas-ddd
+chmod 777 -R .
 ```
 
 2. **Construir y levantar los contenedores**
