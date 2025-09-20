@@ -170,30 +170,6 @@ docker compose exec app php artisan test --filter PlansTest
 - ✅ Respuestas de API correctas
 - ✅ Manejo de errores y validaciones
 
-## 🔄 Validaciones de Negocio
-
-
-### Suscripciones Únicas
-- Solo una suscripción activa por tenant (implementado con triggers MySQL)
-- Al cambiar de plan, se cierra automáticamente la suscripción anterior
-- Se mantiene historial completo de suscripciones
-
-
-## 🚧 Funcionalidades Implementadas
-
-- ✅ CRUD completo para Planes
-- ✅ CRUD completo para Tenants
-- ✅ CRUD completo para Usuarios con validación de límites
-- ✅ Sistema de suscripciones con cambio de planes
-- ✅ Políticas de autorización basadas en roles
-- ✅ Validaciones de negocio automáticas
-- ✅ Seeders con datos de ejemplo
-- ✅ Tests automatizados
-- ✅ Documentación API completa
-- ✅ Arquitectura DDD
-- ✅ Dockerización completa
-
-
 
 
 ## 👨‍💻 Autor
