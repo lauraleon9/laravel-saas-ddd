@@ -7,9 +7,9 @@ Una aplicación SaaS desarrollada en Laravel 12 siguiendo principios de Domain D
 - **Arquitectura DDD**: Separación clara entre dominio, aplicación e infraestructura
 - **API RESTful**: Endpoints completamente documentados y probados
 - **Multi-tenancy**: Soporte para múltiples inquilinos con usuarios independientes
-- **Sistema de Suscripciones**: Gestión de planes y suscripciones con límites de usuarios
+- **Sistema de Suscripciones**: Gestión de planes y suscripciones con límites por estado
 - **Autorización**:  (Laravel Sanctum) Políticas de autorización basadas en roles 
-- **Validación de Negocio**: Límites de usuarios por solo un plan activo 
+- **Validación de Negocio**: Límites por ROL 
 - **Seeding**: Datos de ejemplo para desarrollo y testing
 - **Historial**: En la tabla suscripciones se guardar historial de los planes
 
@@ -146,52 +146,8 @@ Los seeders crean automáticamente:
 ## 📝 Ejemplos de Uso
 
 ### Obtener todos los planes
-```bash
-curl -X GET http://localhost:8086/api/v1/plans \
-  -H "Accept: application/json"
-```
+Impotar el Archivo en POSTMAN: postman/laravel-saas-api.postman_collection.json
 
-### Crear un nuevo tenant
-```bash
-curl -X POST http://localhost:8086/api/v1/tenants \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -d '{
-    "name": "Mi Empresa",
-    "slug": "mi-empresa"
-  }'
-```
-
-### Crear usuario en un tenant
-```bash
-curl -X POST http://localhost:8086/api/v1/tenants/1/users \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -d '{
-    "name": "Juan Pérez",
-    "email": "juan@miempresa.com",
-    "password": "password123",
-    "role": "user"
-  }'
-```
-
-### Cambiar plan de suscripción
-```bash
-curl -X POST http://localhost:8086/api/v1/tenants/1/subscriptions/change-plan \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -d '{
-    "plan_id": 2
-  }'
-```
-
-## 🔒 Autorización
-
-El sistema implementa políticas de autorización basadas en roles:
-
-- **Administradores globales**: Pueden gestionar planes y tienen acceso completo
-- **Usuarios regulares**: Acceso limitado según su tenant
-- **Operaciones públicas**: Consulta de planes disponibles
 
 ### Roles de usuario
 - `admin`: Administrador global del sistema
@@ -211,50 +167,17 @@ docker compose exec app php artisan test --filter PlansTest
 
 ### Tests incluidos
 - ✅ CRUD completo de planes con validaciones
-- ✅ Validación de límites de usuarios por plan
 - ✅ Respuestas de API correctas
 - ✅ Manejo de errores y validaciones
 
 ## 🔄 Validaciones de Negocio
 
-### Límites de Usuarios por Plan
-- El sistema valida automáticamente que no se excedan los límites de usuarios por plan
-- Al crear un nuevo usuario, se verifica contra la suscripción activa del tenant
-- Respuesta HTTP 422 si se intenta exceder el límite
 
 ### Suscripciones Únicas
 - Solo una suscripción activa por tenant (implementado con triggers MySQL)
 - Al cambiar de plan, se cierra automáticamente la suscripción anterior
 - Se mantiene historial completo de suscripciones
 
-## 🛠️ Comandos Útiles
-
-### Artisan Commands
-```bash
-# Limpiar cache
-docker compose exec app php artisan cache:clear
-
-# Ver rutas
-docker compose exec app php artisan route:list
-
-# Tinker (REPL)
-docker compose exec app php artisan tinker
-
-# Rollback y re-seed
-docker compose exec app php artisan migrate:fresh --seed
-```
-
-### Logs
-```bash
-# Ver logs de Laravel
-docker compose exec app tail -f storage/logs/laravel.log
-
-# Ver logs de Nginx
-docker compose logs web
-
-# Ver logs de MySQL
-docker compose logs db
-```
 
 ## 🚧 Funcionalidades Implementadas
 
