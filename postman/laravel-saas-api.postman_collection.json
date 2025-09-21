@@ -283,6 +283,76 @@
               "path": ["api","v1","tenants","{{tenant_id}}","users"]
             }
           }
+        },
+        {
+          "name": "GET /api/v1/tenants/{tenant}/users/{user} (protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users","{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "PUT /api/v1/tenants/{tenant}/users/{user} (protected)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Usuario Actualizado\",\n  \"email\": \"user.updated@example.com\",\n  \"role\": \"admin\",\n  \"is_active\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users","{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/v1/tenants/{tenant}/users/{user} (protected)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Content-Type", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_active\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users","{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/v1/tenants/{tenant}/users/{user} (protected)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "Authorization", "value": "Bearer {{api_token}}"}
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/tenants/{{tenant_id}}/users/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api","v1","tenants","{{tenant_id}}","users","{{user_id}}"]
+            }
+          }
         }
       ]
     },
